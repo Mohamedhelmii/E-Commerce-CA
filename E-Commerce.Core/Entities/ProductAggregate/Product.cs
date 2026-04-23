@@ -1,5 +1,5 @@
 ﻿using System;
-namespace E_Commerce.Core.Entities
+namespace E_Commerce.Core.Entities.ProductAggregate
 {
     public class Product : BaseEntity
     {
