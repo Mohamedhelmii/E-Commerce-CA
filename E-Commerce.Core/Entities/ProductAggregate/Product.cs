@@ -10,7 +10,7 @@ namespace E_Commerce.Core.Entities.ProductAggregate
 
         public Guid CategoryId { get; set; }
         public ProductCategory ProductCategory { get; set; } = null!;
-        public Guid ProductId { get; set; }
+        public Guid BrandId { get; set; }
         public ProductBrand ProductBrand { get; set; } = null!;
     }
 }
