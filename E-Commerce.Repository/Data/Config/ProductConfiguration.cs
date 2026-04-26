@@ -6,7 +6,7 @@ namespace E_Commerce.Repository.Data.Config
 {
     public class ProductConfiguration : BaseConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<Product> builder)
+        public override void Configure(EntityTypeBuilder<Product> builder)
         {
             base.Configure(builder);
             builder.Property(p => p.Name).IsRequired().HasMaxLength(100);

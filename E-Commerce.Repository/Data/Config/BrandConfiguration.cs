@@ -6,7 +6,7 @@ namespace E_Commerce.Repository.Data.Config
 {
     public class BrandConfiguration : BaseConfiguration<ProductBrand>
     {
-        public void Configure(EntityTypeBuilder<ProductBrand> builder)
+        public override void Configure(EntityTypeBuilder<ProductBrand> builder)
         {
             base.Configure(builder);
             builder.Property(c => c.Name).IsRequired();

@@ -6,7 +6,7 @@ namespace E_Commerce.Repository.Data.Config
 {
     public class CategoryConfiguration : BaseConfiguration<ProductCategory>
     {
-        public void Configure(EntityTypeBuilder<ProductCategory> builder)
+        public override void Configure(EntityTypeBuilder<ProductCategory> builder)
         {
             base.Configure(builder);
             builder.Property(c => c.Name).IsRequired();

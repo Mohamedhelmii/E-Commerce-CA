@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Core.Entities.OrderAggregate;
 using E_Commerce.Core.Entities.ProductAggregate;
+using E_Commerce.Repository.Data.Config;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace E_Commerce.Repository.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

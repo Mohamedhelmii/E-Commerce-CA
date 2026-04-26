@@ -1,4 +1,7 @@
 
+using E_Commerce.Repository.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace E_Commerce.APIs
 {
     public class Program
@@ -12,7 +15,11 @@ namespace E_Commerce.APIs
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-
+            builder.Services.AddDbContext<StoreContext>(
+                option =>
+                {
+                    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+                });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
