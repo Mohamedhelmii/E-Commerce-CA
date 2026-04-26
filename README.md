@@ -24,13 +24,26 @@ Comprehensive database schema design:
 ### 2. Relationship Management
 
 - Configured **One-to-Many** relationships for catalogs.
-- Decoupled `Product` and `Order` using an **Associative Table (`OrderItem`)** to store historical snapshots (Price/Quantity at the time of purchase).
+- Decoupled `Product` and `Order` using an **Associative Table (`OrderItem`)** to store historical snapshots.
 
 ### 3. Database & Tools Setup
 
 - Configured **Entity Framework Core 9.0** as the ORM.
 - Integrated **SQL Server** as the database provider.
 - Installed necessary EF Core packages (`SqlServer`, `Tools`, `Design`) compatible with **.NET 9**.
+
+### 4. Advanced EF Core Mapping (Fluent API)
+
+- **Data Snapshot Pattern:** Implemented a snapshot strategy in `OrderItem` to store `Price`, `ProductName`, and `ImageUrl` at the time of purchase. This prevents historical order data from changing when the product catalog is updated.
+- **Global Query Filters:** Centralized configuration for **Soft Deletes** using a `BaseConfiguration` class, ensuring that "deleted" records are automatically excluded from all queries.
+- **Owned Entity Types:** Optimized the `Order` table by embedding the `Address` entity directly into it using `OwnsOne`, improving performance and simplifying the database schema.
+
+## 📊 Database Schema Insight
+
+The database design prioritizes **Data Integrity**:
+
+- **Order-OrderItem:** Configured with `DeleteBehavior.Cascade` to manage the lifecycle of order lines.
+- **Product-OrderItem Link:** Established an explicit Foreign Key via `ProductItemId` to maintain a reference to the source product while keeping the data independent.
 
 ## 🛠️ Tech Stack
 
@@ -44,8 +57,9 @@ Comprehensive database schema design:
 - ✅ Solution & Multi-layered Project Setup (API, Service, Repository, Core).
 - ✅ Domain Entities & Relationship Mapping.
 - ✅ NuGet Packages Installation & Version Compatibility.
-- Database Context (`StoreContext`) Configuration.
-- Initial Database Migration & Seeding.
+- ✅ Fluent API Configurations (Relational Mapping & Constraints).
+- ✅ Handling Ambiguous Relationships between `Order` and `OrderItem`.
+- ✅ Database Migration successfully generated via `InitialCreate`.
 
 ---
 
