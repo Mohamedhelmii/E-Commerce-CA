@@ -21,10 +21,31 @@ Comprehensive database schema design:
 - **Order Aggregate:** `Order`, `OrderItem`, and `DeliveryMethod`.
 - **Identity & Location:** `Address` (implemented as an **Owned Type** within the Order).
 
-### 2. Relationship Management
+## 🧠 Database Design Philosophy & Relationships
+
+In this project, we prioritize **Data Integrity** and **Auditability**. Below is the reasoning behind our core relationship mappings:
 
 - Configured **One-to-Many** relationships for catalogs.
 - Decoupled `Product` and `Order` using an **Associative Table (`OrderItem`)** to store historical snapshots.
+
+### 1. The "Snapshot" Pattern (OrderItem ↔ Product)
+
+- **Problem:** If a product's price or name changes in the catalog, historical orders should not be affected.
+- **Solution:** Instead of a simple foreign key lookup, we store a **Snapshot** of the product (`Price`, `ProductName`, `PictureUrl`) directly inside the `OrderItem` table at the moment of purchase.
+- **Benefit:** Ensures that financial records and customer receipts remain accurate and unchanged over time, even if the source product is deleted or updated.
+
+### 2. Explicit Relationship Mapping (Avoid Shadow Properties)
+
+- **Strategy:** We used **Fluent API** to explicitly define relationships (e.g., `OrderId` as a Foreign Key for `OrderItem`).
+- **Why:** EF Core sometimes creates "Shadow Properties" (like `OrderId1`) when relationships are ambiguous. By being explicit, we ensure the database schema remains clean, predictable, and perfectly aligned with our Domain Entities.
+
+### 3. Value Objects via Owned Types (Order ↔ Address)
+
+- **Design:** The shipping `Address` is treated as a **Value Object**.
+- **Implementation:** Using `builder.OwnsOne()`, we embed the address fields directly into the `Orders` table.
+- **Why:** This avoids unnecessary `JOIN` operations and extra tables, improving database performance while maintaining a clean, object-oriented code structure in the Core layer.
+
+---
 
 ### 3. Database & Tools Setup
 
