@@ -1,5 +1,14 @@
 [
-  { "Name": "Shoes" },
-  { "Name": "Clothes" },
-  { "Name": "Accessories" }
+  {
+    "Id": "8b403739-e9a1-4d9b-91d8-fcab8c70efe8",
+    "Name": "Shoes"
+  },
+  {
+    "Id": "60d3757a-fd1e-4662-bbf6-eefa2fd742d8",
+    "Name" : "Clothes"
+  },
+  {
+    "Id": "c5d6dab3-8659-4d2c-9660-d802ec01461e",
+    "Name": "Accessories"
+  }
 ]

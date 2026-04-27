@@ -1,5 +1,14 @@
 [
-  { "Name": "Adidas" },
-  { "Name": "Nike" },
-  { "Name": "Puma" }
+  {
+    "Id": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
+    "Name": "Adidas"
+  },
+  {
+    "Id": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
+    "Name": "Nike"
+  },
+  {
+    "Id": "b5bf0538-c624-4464-a942-11501d0dcab3",
+    "Name": "Puma"
+  }
 ]

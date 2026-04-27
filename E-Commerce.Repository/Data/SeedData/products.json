@@ -3,16 +3,16 @@
     "Name": "Adidas Speed Shoes",
     "Description": "High quality running shoes",
     "Price": 1500,
-    "PictureUrl": "images/products/sb-core1.png",
-    "BrandId": 1,
-    "CategoryId": 1
+    "ImageUrl": "images/products/sb-core1.png",
+    "BrandId": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
+    "CategoryId": "8b403739-e9a1-4d9b-91d8-fcab8c70efe8"
   },
   {
     "Name": "Nike T-Shirt",
     "Description": "Comfortable cotton t-shirt",
     "Price": 800,
-    "PictureUrl": "images/products/tshirt-1.png",
-    "BrandId": 2,
-    "CategoryId": 2
+    "ImageUrl": "images/products/tshirt-1.png",
+    "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
+    "CategoryId": "60d3757a-fd1e-4662-bbf6-eefa2fd742d8"
   }
 ]
