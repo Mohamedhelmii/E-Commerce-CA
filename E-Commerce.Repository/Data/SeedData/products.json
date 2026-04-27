@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "Adidas Speed Shoes",
+    "Description": "High quality running shoes",
+    "Price": 1500,
+    "PictureUrl": "images/products/sb-core1.png",
+    "BrandId": 1,
+    "CategoryId": 1
+  },
+  {
+    "Name": "Nike T-Shirt",
+    "Description": "Comfortable cotton t-shirt",
+    "Price": 800,
+    "PictureUrl": "images/products/tshirt-1.png",
+    "BrandId": 2,
+    "CategoryId": 2
+  }
+]
