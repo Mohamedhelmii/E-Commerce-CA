@@ -21,6 +21,13 @@ Comprehensive database schema design:
 - **Order Aggregate:** `Order`, `OrderItem`, and `DeliveryMethod`.
 - **Identity & Location:** `Address` (implemented as an **Owned Type** within the Order).
 
+### 2.📂 Data Layer & Persistence
+
+- **Automated Data Seeding**: Implemented a robust seeding system using `System.Text.Json` to populate the database with initial data (Products, Brands, Categories, and Delivery Methods) from JSON files.
+- **GUID Identity System**: Transitioned to `Guid` for Primary Keys across all entities to ensure globally unique identifiers and prepare for scalable distributed architectures.
+- **Entity Configuration**: Applied Fluent API for precise database mapping, including decimal precision for prices and relationship constraints.
+- **Auto-Migration**: Integrated automatic database migration on application startup using `context.Database.MigrateAsync()` to ensure the schema is always up-to-date.
+
 ## 🧠 Database Design Philosophy & Relationships
 
 In this project, we prioritize **Data Integrity** and **Auditability**. Below is the reasoning behind our core relationship mappings:
