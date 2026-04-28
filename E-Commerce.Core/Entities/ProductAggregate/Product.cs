@@ -9,8 +9,8 @@ namespace E_Commerce.Core.Entities.ProductAggregate
         public string ImageUrl { get; set; } = string.Empty;
 
         public Guid CategoryId { get; set; }
-        public ProductCategory ProductCategory { get; set; } = null!;
+        public ProductCategory Category { get; set; } = null!;
         public Guid BrandId { get; set; }
-        public ProductBrand ProductBrand { get; set; } = null!;
+        public ProductBrand Brand { get; set; } = null!;
     }
 }

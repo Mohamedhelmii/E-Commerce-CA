@@ -1,4 +1,4 @@
-﻿namespace E_Commerce.Core.Entities.OrderAggregate
+﻿    namespace E_Commerce.Core.Entities.OrderAggregate
 {
     public class OrderItem : BaseEntity
     {
