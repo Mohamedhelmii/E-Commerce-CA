@@ -21,7 +21,7 @@ namespace E_Commerce.Repository.Data.Config
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(o => o.DeliveryMethod)
-               .WithMany()
+               .WithMany(o =>o.Orders)
                .HasForeignKey(o => o.DeliveryMethodId)
                .OnDelete(DeleteBehavior.NoAction);
         }

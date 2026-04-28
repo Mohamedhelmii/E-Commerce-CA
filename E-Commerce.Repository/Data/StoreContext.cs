@@ -29,7 +29,7 @@ namespace E_Commerce.Repository.Data
             base.OnModelCreating(modelBuilder);
 
             // This line defines the EF core to checks for any other settings we have configured.(at reposatoriy project)
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductConfiguration).Assembly);
         }
     }
 }

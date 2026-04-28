@@ -12,13 +12,15 @@ namespace E_Commerce.Repository.Data.Config
             builder.Property(p => p.Name).IsRequired().HasMaxLength(100);
             builder.Property(p => p.Price).HasColumnType("decimal(18,2)");
             builder.Property(p => p.ImageUrl).IsRequired();
-            builder.HasOne(p => p.ProductBrand)
-                .WithMany()
-                .HasForeignKey(p => p.BrandId);
+            builder.HasOne(p => p.Brand)
+                .WithMany(p => p.Products)
+                .HasForeignKey(p => p.BrandId)
+                .IsRequired();
             
-            builder.HasOne(p => p.ProductCategory)
-                .WithMany()
-                .HasForeignKey(p => p.CategoryId);
+            builder.HasOne(p => p.Category)
+                .WithMany(p => p.Products)
+                .HasForeignKey(p => p.CategoryId)
+                .IsRequired();
         }
     }
 }
