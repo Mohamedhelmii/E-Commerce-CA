@@ -13,17 +13,19 @@ namespace E_Commerce.Repository.Repository
     public class GenericRepo<T> : IGenericRepo<T> where T : BaseEntity
     {
         private readonly StoreContext sContext;
+        private readonly DbSet<T> dbSet;
         public GenericRepo(StoreContext _storeContext)
         {
             sContext = _storeContext;
+            dbSet = sContext.Set<T>();
         }
         async Task<T?> IGenericRepo<T>.GetByIdAsync(Guid id)
         {
-            return await sContext.Set<T>().FindAsync(id);
+            return await dbSet.FindAsync(id);
         }
         async Task<IReadOnlyList<T>> IGenericRepo<T>.GetAllAsync()
         {
-            return await sContext.Set<T>().ToListAsync();
+            return await dbSet.AsNoTracking().ToListAsync();
         }
     }
 }
