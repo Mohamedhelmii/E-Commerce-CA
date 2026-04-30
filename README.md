@@ -66,6 +66,21 @@ In this project, we prioritize **Data Integrity** and **Auditability**. Below is
 - **Global Query Filters:** Centralized configuration for **Soft Deletes** using a `BaseConfiguration` class, ensuring that "deleted" records are automatically excluded from all queries.
 - **Owned Entity Types:** Optimized the `Order` table by embedding the `Address` entity directly into it using `OwnsOne`, improving performance and simplifying the database schema.
 
+### 5. 🏗️ Architectural Patterns (Repository Pattern)
+
+To ensure a loosely coupled architecture and facilitate easier unit testing, we implemented a robust **Generic Repository Pattern**.
+
+- **Generic Implementation:** Created a centralized `IGenericRepository<T>` and `GenericRepository<T>` to handle common CRUD operations for all domain entities.
+- **Performance Optimization (`AsNoTracking`):** Integrated `.AsNoTracking()` in all read-only operations (like `GetAllAsync`) to bypass EF Core's change tracker, significantly reducing memory overhead and improving API response times.
+- **DbSet Caching:** Optimized the repository by caching the `DbSet<T>` in the constructor. This avoids redundant `Set<T>()` lookups during every database call, making the code cleaner and more efficient.
+- **Modern Syntax:** Leveraged **Expression-Bodied Members** (`=>`) to maintain a concise and readable implementation of repository methods.
+
+```csharp
+// High-performance Read-Only implementation
+public async Task<IReadOnlyList<T>> GetAllAsync()
+    => await _dbSet.AsNoTracking().ToListAsync();
+
+
 ## 📊 Database Schema Insight
 
 The database design prioritizes **Data Integrity**:
@@ -88,7 +103,9 @@ The database design prioritizes **Data Integrity**:
 - ✅ Fluent API Configurations (Relational Mapping & Constraints).
 - ✅ Handling Ambiguous Relationships between `Order` and `OrderItem`.
 - ✅ Database Migration successfully generated via `InitialCreate`.
-
+- ✅ Optimized Generic Repository Implementation.**
+- ✅ Implemented Performance-first data retrieval using AsNoTracking.**
 ---
 
 _Developed by Mohamed Helmy Rashed Ahmed_
+```
