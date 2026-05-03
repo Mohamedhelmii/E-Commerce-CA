@@ -23,5 +23,5 @@ namespace E_Commerce.Repository.Specification
             
             return query;
         }
-    }
+    }   
 }
