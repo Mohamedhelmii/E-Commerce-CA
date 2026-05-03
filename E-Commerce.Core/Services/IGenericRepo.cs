@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace E_Commerce.Core.Interface
+namespace E_Commerce.Core.Services
 {
     public interface IGenericRepo<T> where T : BaseEntity
     {

@@ -1,5 +1,5 @@
 ﻿using E_Commerce.Core.Entities;
-using E_Commerce.Core.Interface;
+using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
