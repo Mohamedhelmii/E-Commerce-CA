@@ -1,6 +1,8 @@
-using System.Threading.Tasks;
+using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
+using E_Commerce.Repository.Repository;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace E_Commerce.APIs
 {
@@ -20,6 +22,10 @@ namespace E_Commerce.APIs
                 {
                     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 });
+
+
+            // DI of Generic Without using UOW
+            builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
