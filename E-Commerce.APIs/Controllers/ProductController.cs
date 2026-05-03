@@ -16,7 +16,7 @@ namespace E_Commerce.APIs.Controllers
             _ProductRepo = ProductRepo;
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(Guid id)
         {
             var p = await _ProductRepo.GetByIdAsync(id);
