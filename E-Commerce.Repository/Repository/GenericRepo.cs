@@ -1,6 +1,8 @@
 ﻿using E_Commerce.Core.Entities;
 using E_Commerce.Core.Services;
+using E_Commerce.Core.Specification;
 using E_Commerce.Repository.Data;
+using E_Commerce.Repository.Specification;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,6 +28,21 @@ namespace E_Commerce.Repository.Repository
         async Task<IReadOnlyList<T>> IGenericRepo<T>.GetAllAsync()
         {
             return await dbSet.AsNoTracking().ToListAsync();
+        }
+
+        // add implemntation of specifcation and add method to apply Evaluator
+        private IQueryable<T> ApplySpecification(ISpecification<T> specification)
+        {
+            return SpecificationEvaluator<T>.GetQuery(dbSet, specification);
+        }
+        public async Task<T?> GetEntityWithSpecifcationAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> GetAllWithSpecificationAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
         }
     }
 }
