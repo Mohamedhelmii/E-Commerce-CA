@@ -6,106 +6,61 @@ A robust and scalable E-Commerce Backend System built with **ASP.NET Core 9**, f
 
 The project is organized into distinct layers to ensure a clean separation of concerns:
 
-- **Core Layer:** The heart of the system, containing Domain Entities, Enums, and Core logic.
-- **Repository Layer (Infrastructure):** Handles data persistence, Entity Framework Core configurations, and database migrations.
-- **Service Layer:** Acts as an intermediary between the API and Repository layers, containing the Business Logic and coordinating application tasks.
+- **Core Layer:** The heart of the system, containing Domain Entities, Specifications, and Core logic.
+- **Repository Layer (Infrastructure):** Handles data persistence, Entity Framework Core configurations, and Specification evaluation.
+- **Service Layer:** Acts as an intermediary, containing Business Logic and coordinating application tasks.
 - **API Layer:** The presentation layer containing Controllers, Middlewares, and API configurations.
 
-## 🚀 Key Features Implemented So Far
+## 🚀 Key Features & Progress
 
-### 1. Domain Modeling (Entities)
+### 1. 🏗️ Architectural Patterns (Advanced Implementation)
 
-Comprehensive database schema design:
+To ensure a loosely coupled architecture and high maintainability, we implemented the following patterns:
 
-- **Product Aggregate:** `Product`, `ProductBrand`, and `ProductCategory`.
-- **Order Aggregate:** `Order`, `OrderItem`, and `DeliveryMethod`.
-- **Identity & Location:** `Address` (implemented as an **Owned Type** within the Order).
+- **Generic Repository Pattern**: Created a centralized `IGenericRepository<T>` to handle common CRUD operations for all domain entities.
+- **Specification Pattern**: Developed a flexible query building system to handle complex data fetching logic (Filtering, Including) outside the controllers, adhering to the **Open-Closed Principle**.
+- **Performance Optimization**: Integrated `.AsNoTracking()` in all read-only operations to reduce memory overhead and improve response times.
 
-### 2.📂 Data Layer & Persistence
+### 2. 📂 Data Layer & Specification Logic
 
-- **Automated Data Seeding**: Implemented a robust seeding system using `System.Text.Json` to populate the database with initial data (Products, Brands, Categories, and Delivery Methods) from JSON files.
-- **GUID Identity System**: Transitioned to `Guid` for Primary Keys across all entities to ensure globally unique identifiers and prepare for scalable distributed architectures.
-- **Entity Configuration**: Applied Fluent API for precise database mapping, including decimal precision for prices and relationship constraints.
-- **Auto-Migration**: Integrated automatic database migration on application startup using `context.Database.MigrateAsync()` to ensure the schema is always up-to-date.
+- **Eager Loading**: Configured specifications to include related data (Brands and Categories) in a single database round-trip, ensuring `Product` data is always complete.
+- **Automated Data Seeding**: Implemented a robust seeding system using `System.Text.Json` to populate initial data from JSON files.
+- **GUID Identity System**: Standardized on `Guid` for Primary Keys across all entities for better scalability.
+- **Auto-Migration**: Integrated automatic database migration on application startup.
 
-## 🧠 Database Design Philosophy & Relationships
+### 3. 🧠 Database Design Philosophy
 
-In this project, we prioritize **Data Integrity** and **Auditability**. Below is the reasoning behind our core relationship mappings:
+- **Snapshot Pattern**: `OrderItem` stores a snapshot of product details (`Price`, `Name`) at the time of purchase to maintain historical accuracy.
+- **Owned Entity Types**: Optimized the `Order` table by embedding the `Address` entity directly using `OwnsOne`.
+- **Global Query Filters**: Centralized configuration for **Soft Deletes** to automatically exclude "deleted" records from queries.
 
-- Configured **One-to-Many** relationships for catalogs.
-- Decoupled `Product` and `Order` using an **Associative Table (`OrderItem`)** to store historical snapshots.
+## 🛣️ Implemented API Endpoints
 
-### 1. The "Snapshot" Pattern (OrderItem ↔ Product)
+| Resource     | Method | Endpoint               | Description                                   |
+| ------------ | ------ | ---------------------- | --------------------------------------------- |
+| **Products** | GET    | `/api/products`        | Get all products with Brands and Categories.  |
+| **Products** | GET    | `/api/products/{id}`   | Get specific product details (Included data). |
+| **Brands**   | GET    | `/api/brands`          | List all available product brands.            |
+| **Brands**   | GET    | `/api/brands/{id}`     | Get specific brand details.                   |
+| **Category** | GET    | `/api/categories`      | List all available product categories.        |
+| **Category** | GET    | `/api/categories/{id}` | Get specific category details.                |
 
-- **Problem:** If a product's price or name changes in the catalog, historical orders should not be affected.
-- **Solution:** Instead of a simple foreign key lookup, we store a **Snapshot** of the product (`Price`, `ProductName`, `PictureUrl`) directly inside the `OrderItem` table at the moment of purchase.
-- **Benefit:** Ensures that financial records and customer receipts remain accurate and unchanged over time, even if the source product is deleted or updated.
-
-### 2. Explicit Relationship Mapping (Avoid Shadow Properties)
-
-- **Strategy:** We used **Fluent API** to explicitly define relationships (e.g., `OrderId` as a Foreign Key for `OrderItem`).
-- **Why:** EF Core sometimes creates "Shadow Properties" (like `OrderId1`) when relationships are ambiguous. By being explicit, we ensure the database schema remains clean, predictable, and perfectly aligned with our Domain Entities.
-
-### 3. Value Objects via Owned Types (Order ↔ Address)
-
-- **Design:** The shipping `Address` is treated as a **Value Object**.
-- **Implementation:** Using `builder.OwnsOne()`, we embed the address fields directly into the `Orders` table.
-- **Why:** This avoids unnecessary `JOIN` operations and extra tables, improving database performance while maintaining a clean, object-oriented code structure in the Core layer.
-
----
-
-### 3. Database & Tools Setup
-
-- Configured **Entity Framework Core 9.0** as the ORM.
-- Integrated **SQL Server** as the database provider.
-- Installed necessary EF Core packages (`SqlServer`, `Tools`, `Design`) compatible with **.NET 9**.
-
-### 4. Advanced EF Core Mapping (Fluent API)
-
-- **Data Snapshot Pattern:** Implemented a snapshot strategy in `OrderItem` to store `Price`, `ProductName`, and `ImageUrl` at the time of purchase. This prevents historical order data from changing when the product catalog is updated.
-- **Global Query Filters:** Centralized configuration for **Soft Deletes** using a `BaseConfiguration` class, ensuring that "deleted" records are automatically excluded from all queries.
-- **Owned Entity Types:** Optimized the `Order` table by embedding the `Address` entity directly into it using `OwnsOne`, improving performance and simplifying the database schema.
-
-### 5. 🏗️ Architectural Patterns (Repository Pattern)
-
-To ensure a loosely coupled architecture and facilitate easier unit testing, we implemented a robust **Generic Repository Pattern**.
-
-- **Generic Implementation:** Created a centralized `IGenericRepository<T>` and `GenericRepository<T>` to handle common CRUD operations for all domain entities.
-- **Performance Optimization (`AsNoTracking`):** Integrated `.AsNoTracking()` in all read-only operations (like `GetAllAsync`) to bypass EF Core's change tracker, significantly reducing memory overhead and improving API response times.
-- **DbSet Caching:** Optimized the repository by caching the `DbSet<T>` in the constructor. This avoids redundant `Set<T>()` lookups during every database call, making the code cleaner and more efficient.
-- **Modern Syntax:** Leveraged **Expression-Bodied Members** (`=>`) to maintain a concise and readable implementation of repository methods.
-
-```csharp
-// High-performance Read-Only implementation
-public async Task<IReadOnlyList<T>> GetAllAsync()
-    => await _dbSet.AsNoTracking().ToListAsync();
-
-
-## 📊 Database Schema Insight
-
-The database design prioritizes **Data Integrity**:
-
-- **Order-OrderItem:** Configured with `DeleteBehavior.Cascade` to manage the lifecycle of order lines.
-- **Product-OrderItem Link:** Established an explicit Foreign Key via `ProductItemId` to maintain a reference to the source product while keeping the data independent.
-
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Tools
 
 - **Framework:** .NET 9.0 (C#)
 - **ORM:** Entity Framework Core 9.0
 - **Database:** Microsoft SQL Server
-- **Architecture:** Clean Architecture with Service & Repository Patterns.
+- **Serialization:** Configured `ReferenceHandler.IgnoreCycles` to handle complex entity relationships gracefully.
+- **Documentation:** Swagger UI for interactive API testing.
 
-## 📂 Current Progress
+## ✅ Current Status: Phase 1 Completed
 
-- ✅ Solution & Multi-layered Project Setup (API, Service, Repository, Core).
-- ✅ Domain Entities & Relationship Mapping.
-- ✅ NuGet Packages Installation & Version Compatibility.
-- ✅ Fluent API Configurations (Relational Mapping & Constraints).
-- ✅ Handling Ambiguous Relationships between `Order` and `OrderItem`.
-- ✅ Database Migration successfully generated via `InitialCreate`.
-- ✅ Optimized Generic Repository Implementation.**
-- ✅ Implemented Performance-first data retrieval using AsNoTracking.**
+- [x] Solution & Multi-layered Project Setup.
+- [x] Domain Entities & Fluent API Mapping.
+- [x] Generic Repository & Specification Pattern Implementation.
+- [x] Refactored Controllers to use Specification logic.
+- [x] Resolved Object Cycle issues in JSON serialization.
+
 ---
 
 _Developed by Mohamed Helmy Rashed Ahmed_
-```
