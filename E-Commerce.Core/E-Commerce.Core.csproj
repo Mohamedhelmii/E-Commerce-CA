@@ -10,6 +10,8 @@
   <ItemGroup>
     <Folder Include="Services\OrderSpec\" />
     <Folder Include="Services\ProductSpec\" />
+    <Folder Include="Specification\OrderSpec\" />
+    <Folder Include="Specification\ProductSpec\" />
   </ItemGroup>
 
 </Project>
