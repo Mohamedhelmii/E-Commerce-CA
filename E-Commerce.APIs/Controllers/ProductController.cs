@@ -1,5 +1,6 @@
 ﻿using E_Commerce.Core.Entities.ProductAggregate;
 using E_Commerce.Core.Services;
+using E_Commerce.Core.Specification.ProductSpec;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,10 +25,19 @@ namespace E_Commerce.APIs.Controllers
             return Ok(p);
         }
 
+        #region old
+        //[HttpGet]
+        //public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
+        //{
+        //    var p = await _ProductRepo.GetAllAsync();
+        //    return Ok(p);
+        //}
+        #endregion
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
         {
-            var p = await _ProductRepo.GetAllAsync();
+            var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec();
+            var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
             return Ok(p);
         }
 
