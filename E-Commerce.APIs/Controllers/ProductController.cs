@@ -20,19 +20,13 @@ namespace E_Commerce.APIs.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProductById(Guid id)
         {
-            var p = await _ProductRepo.GetByIdAsync(id);
+            var ProductSpec = new ProductsWithCategoriesAndBrandsSpec(id);
+            var p = await _ProductRepo.GetEntityWithSpecifcationAsync(ProductSpec);
             if(p == null) return NotFound();
             return Ok(p);
         }
 
-        #region old
-        //[HttpGet]
-        //public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
-        //{
-        //    var p = await _ProductRepo.GetAllAsync();
-        //    return Ok(p);
-        //}
-        #endregion
+       
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
         {
@@ -41,5 +35,25 @@ namespace E_Commerce.APIs.Controllers
             return Ok(p);
         }
 
+
+        #region old
+
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Product>> GetProductById(Guid id)
+        //{
+        //    var p = await _ProductRepo.GetByIdAsync(id);
+        //    if (p == null) return NotFound();
+        //    return Ok(p);
+        //}
+
+        //[HttpGet]
+        //public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
+        //{
+        //    var p = await _ProductRepo.GetAllAsync();
+        //    return Ok(p);
+        //}
+
+
+        #endregion
     }
 }
