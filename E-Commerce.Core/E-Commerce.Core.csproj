@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\OrderSpec\" />
-    <Folder Include="Services\ProductSpec\" />
+    <Compile Remove="Services\OrderSpec\**" />
+    <Compile Remove="Services\ProductSpec\**" />
+    <EmbeddedResource Remove="Services\OrderSpec\**" />
+    <EmbeddedResource Remove="Services\ProductSpec\**" />
+    <None Remove="Services\OrderSpec\**" />
+    <None Remove="Services\ProductSpec\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Specification\OrderSpec\" />
   </ItemGroup>
 
