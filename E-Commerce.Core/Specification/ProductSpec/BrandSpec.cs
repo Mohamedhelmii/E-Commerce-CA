@@ -9,5 +9,6 @@ namespace E_Commerce.Core.Specification.ProductSpec
 {
     public class BrandSpec : BaseSpecification<ProductBrand>
     {
+        public BrandSpec() { }
     }
 }
