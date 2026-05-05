@@ -9,9 +9,7 @@ namespace E_Commerce.APIs.Helpers
         public MappingProfiles()
         {
             CreateMap<Product, ProductToRetyrnDTO>()
-                .ForMember(PDTO => PDTO.Brand, p => p.MapFrom(pr => pr.Brand.Name));
-
-            CreateMap<Product, ProductToRetyrnDTO>()
+                .ForMember(PDTO => PDTO.Brand, p => p.MapFrom(pr => pr.Brand.Name))
                .ForMember(PDTO => PDTO.Category, p => p.MapFrom(pr => pr.Category.Name));
         }
     }
