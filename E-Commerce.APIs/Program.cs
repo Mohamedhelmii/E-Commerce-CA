@@ -35,6 +35,8 @@ namespace E_Commerce.APIs
             builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             // Register AutoMapper
             builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfiles>());
+            // Register Resolver
+            builder.Services.AddScoped<ProductImageUrlSolver>();
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
