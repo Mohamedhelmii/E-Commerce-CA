@@ -1,4 +1,6 @@
-﻿using E_Commerce.Core.Entities.ProductAggregate;
+﻿using AutoMapper;
+using E_Commerce.Core.DTOs;
+using E_Commerce.Core.Entities.ProductAggregate;
 using E_Commerce.Core.Services;
 using E_Commerce.Core.Specification.ProductSpec;
 using Microsoft.AspNetCore.Http;
@@ -11,31 +13,51 @@ namespace E_Commerce.APIs.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IGenericRepo<Product> _ProductRepo;
+        private readonly IMapper _Mapper;
 
-        public ProductController(IGenericRepo<Product> ProductRepo)
+        public ProductController(IGenericRepo<Product> ProductRepo, IMapper mapper)
         {
             _ProductRepo = ProductRepo;
+            _Mapper = mapper;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProductById(Guid id)
+        public async Task<ActionResult<ProductToRetyrnDTO>> GetProductById(Guid id)
         {
             var ProductSpec = new ProductsWithCategoriesAndBrandsSpec(id);
             var p = await _ProductRepo.GetEntityWithSpecifcationAsync(ProductSpec);
-            if(p == null) return NotFound();
-            return Ok(p);
+            if (p == null) return NotFound();
+            return Ok(_Mapper.Map<Product, ProductToRetyrnDTO>(p));
         }
 
-       
+
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts()
         {
             var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec();
             var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
-            return Ok(p);
+            return Ok(_Mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToRetyrnDTO>>(p));
         }
 
+        #region After using specification
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Product>> GetProductById(Guid id)
+        //{
+        //    var ProductSpec = new ProductsWithCategoriesAndBrandsSpec(id);
+        //    var p = await _ProductRepo.GetEntityWithSpecifcationAsync(ProductSpec);
+        //    if (p == null) return NotFound();
+        //    return Ok(p);
+        //}
 
+
+        //[HttpGet]
+        //public async Task<ActionResult<IReadOnlyList<Product>>> GetAllProducts()
+        //{
+        //    var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec();
+        //    var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
+        //    return Ok(p);
+        //}
+        #endregion
         #region old
 
         //[HttpGet("{id}")]
