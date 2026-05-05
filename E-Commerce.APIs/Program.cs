@@ -16,7 +16,7 @@ namespace E_Commerce.APIs
 
             // Add services to the container.
 
-            //builder.Services.AddControllers()
+            builder.Services.AddControllers();
             //    //JSON serializer to ignore object cycles until using DTO
             //    .AddJsonOptions(options =>
             //{
