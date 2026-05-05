@@ -11,6 +11,9 @@ namespace E_Commerce.APIs.Helpers
             CreateMap<Product, ProductToRetyrnDTO>()
                 .ForMember(PDTO => PDTO.Brand, p => p.MapFrom(pr => pr.Brand.Name))
                .ForMember(PDTO => PDTO.Category, p => p.MapFrom(pr => pr.Category.Name));
+
+            CreateMap<ProductBrand, BrandsToReturnDTO>();
+            CreateMap<ProductCategory, CategoeiesToReturnDTO>();
         }
     }
 }
