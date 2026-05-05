@@ -1,7 +1,9 @@
+using E_Commerce.APIs.Helpers;
 using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 
 namespace E_Commerce.APIs
@@ -14,12 +16,12 @@ namespace E_Commerce.APIs
 
             // Add services to the container.
 
-            builder.Services.AddControllers()
-                //JSON serializer to ignore object cycles until using DTO
-                .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
-            }); ;
+            //builder.Services.AddControllers()
+            //    //JSON serializer to ignore object cycles until using DTO
+            //    .AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+            //}); ;
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<StoreContext>(
@@ -31,6 +33,8 @@ namespace E_Commerce.APIs
 
             // DI of Generic Without using UOW
             builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+            // Register AutoMapper
+            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfiles>());
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
