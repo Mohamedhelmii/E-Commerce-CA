@@ -10,6 +10,7 @@ The project is organized into distinct layers to ensure a clean separation of co
 - **Repository Layer (Infrastructure):** Handles data persistence, Entity Framework Core configurations, and Specification evaluation.
 - **Service Layer:** Acts as an intermediary, containing Business Logic and coordinating application tasks.
 - **API Layer:** The presentation layer containing Controllers, Middlewares, and API configurations.
+- **Data Mapping Layer:** Integrated AutoMapper with Custom Resolvers to transform internal entities into secure, client-ready DTOs.
 
 ## 🚀 Key Features & Progress
 
@@ -34,6 +35,12 @@ To ensure a loosely coupled architecture and high maintainability, we implemente
 - **Owned Entity Types**: Optimized the `Order` table by embedding the `Address` entity directly using `OwnsOne`.
 - **Global Query Filters**: Centralized configuration for **Soft Deletes** to automatically exclude "deleted" records from queries.
 
+### 4. 🖼️ Media & Security Logic
+
+Dynamic Image URL Resolution: Implemented a custom ProductUrlResolver that retrieves the ApiUrl from appsettings.json and prepends it to image paths, ensuring the Front-end receives full, accessible links.
+
+DTO Pattern Implementation: Used Data Transfer Objects (e.g., ProductToReturnDto) to flatten complex object cycles and hide sensitive database details from the API response.
+
 ## 🛣️ Implemented API Endpoints
 
 | Resource     | Method | Endpoint               | Description                                   |
@@ -52,6 +59,8 @@ To ensure a loosely coupled architecture and high maintainability, we implemente
 - **Database:** Microsoft SQL Server
 - **Serialization:** Configured `ReferenceHandler.IgnoreCycles` to handle complex entity relationships gracefully.
 - **Documentation:** Swagger UI for interactive API testing.
+- **Mapping:** AutoMapper (with Dependency Injection).
+- **Configuration:** Strong-typed IConfiguration for dynamic environment settings.
 
 ## ✅ Current Status: Phase 1 Completed
 
@@ -60,6 +69,8 @@ To ensure a loosely coupled architecture and high maintainability, we implemente
 - [x] Generic Repository & Specification Pattern Implementation.
 - [x] Refactored Controllers to use Specification logic.
 - [x] Resolved Object Cycle issues in JSON serialization.
+- [x] AutoMapper integration for DTO transformation.
+- [x] Custom Image URL Resolver for assets.
 
 ---
 
