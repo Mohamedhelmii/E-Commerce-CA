@@ -1,3 +1,4 @@
+using E_Commerce.APIs.Extentions;
 using E_Commerce.APIs.Helpers;
 using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
@@ -30,13 +31,16 @@ namespace E_Commerce.APIs
                     option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 });
 
+            #region move to extension folder
 
-            // DI of Generic Without using UOW
-            builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
-            // Register AutoMapper
-            builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfiles>());
-            // Register Resolver
-            builder.Services.AddScoped<ProductImageUrlSolver>();
+            //// DI of Generic Without using UOW
+            //builder.Services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
+            //// Register AutoMapper
+            //builder.Services.AddAutoMapper(cfg => cfg.AddProfile<MappingProfiles>());
+            //// Register Resolver
+            //builder.Services.AddScoped<ProductImageUrlSolver>();
+            #endregion
+            builder.Services.ApplicationServices();
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
