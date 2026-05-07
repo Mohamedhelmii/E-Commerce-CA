@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.APIs.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriesController : ControllerBase
+    //[Route("api/[controller]")]
+    //[ApiController]
+    public class CategoriesController : BaseApiController
     {
         private IGenericRepo<ProductCategory> _CategoryRepo { get; }
         private readonly IMapper _mapper;
