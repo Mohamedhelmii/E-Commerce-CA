@@ -1,4 +1,5 @@
-﻿using E_Commerce.Repository.Data;
+﻿using E_Commerce.APIs.Errors;
+using E_Commerce.Repository.Data;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Commerce.APIs.Controllers
@@ -14,14 +15,14 @@ namespace E_Commerce.APIs.Controllers
         [HttpGet("notfound")]
         public ActionResult GetNotFound()
         {
-            var thing = _storeContext.Products.Find(100);
-            return (thing == null) ? NotFound() : Ok();
+            var thing = _storeContext.Products.Find(Guid.NewGuid());
+            return (thing == null) ? NotFound(new ApiResponse(404)) : Ok(thing);
         }
 
         [HttpGet("servererror")]
         public ActionResult ServerError()
         {
-            var thing = _storeContext.Products.Find(100);
+            var thing = _storeContext.Products.Find(Guid.NewGuid());
             var thingTOREturn = thing.ToString();
             return Ok();
         }
@@ -29,7 +30,7 @@ namespace E_Commerce.APIs.Controllers
         [HttpGet("badrequest")]
         public ActionResult GetBadRequest()
         {
-            return BadRequest();
+            return BadRequest(new ApiResponse(400));
         }
 
         [HttpGet("badrequest/{id}")]
