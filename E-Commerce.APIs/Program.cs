@@ -1,9 +1,11 @@
+﻿using E_Commerce.APIs.Errors;
 using E_Commerce.APIs.Extentions;
 using E_Commerce.APIs.Helpers;
 using E_Commerce.APIs.Middleware;
 using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
@@ -42,6 +44,24 @@ namespace E_Commerce.APIs
             //builder.Services.AddScoped<ProductImageUrlSolver>();
             #endregion
             builder.Services.ApplicationServices();
+
+            // this configure to standardize validation error response format
+            builder.Services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var errors = actionContext.ModelState
+                        .Where(e => e.Value.Errors.Count > 0)
+                        .SelectMany(x => x.Value.Errors)
+                        .Select(x => x.ErrorMessage).ToArray();
+                    var errorResponse = new ApiValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+
+                    return new BadRequestObjectResult(errorResponse);
+                };
+            });
             var app = builder.Build();
             app.UseMiddleware<ExceptionMiddleware>();
 
