@@ -1,5 +1,6 @@
 using E_Commerce.APIs.Extentions;
 using E_Commerce.APIs.Helpers;
+using E_Commerce.APIs.Middleware;
 using E_Commerce.Core.Services;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
@@ -42,6 +43,9 @@ namespace E_Commerce.APIs
             #endregion
             builder.Services.ApplicationServices();
             var app = builder.Build();
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             if (app.Environment.IsDevelopment())
             {
