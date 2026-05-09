@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using E_Commerce.APIs.Errors;
+using System.Net;
 using System.Text.Json;
 
 namespace E_Commerce.APIs.Middleware
@@ -15,7 +16,7 @@ namespace E_Commerce.APIs.Middleware
             _env = hostEnvironment;
         }
 
-        public async void Invoke(HttpContext context)
+        public async Task Invoke(HttpContext context)
         {
             try
             {
