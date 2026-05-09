@@ -41,6 +41,16 @@ Dynamic Image URL Resolution: Implemented a custom ProductUrlResolver that retri
 
 DTO Pattern Implementation: Used Data Transfer Objects (e.g., ProductToReturnDto) to flatten complex object cycles and hide sensitive database details from the API response.
 
+### 5.🛡️ Error Handling & Infrastructure
+
+Implemented a robust, centralized error handling system to ensure API stability and professional responses:
+
+- **Global Exception Middleware**: A custom-built middleware that acts as a safety net for the entire request pipeline, catching unhandled exceptions and returning consistent JSON responses.
+- **Standardized API Response**: Created a base `ApiResponse` class to unify all error formats across the system, ensuring every error follows the `{ "statusCode": 0, "message": "..." }` pattern.
+- **Environment-Aware Exceptions**: Developed an `ApiException` class that provides detailed stack traces during **Development** for easier debugging while hiding sensitive info in **Production** for security.
+- **Validation Error Uniformity**: Overrode the default ASP.NET Core behavior to capture and format validation errors (400 Bad Request) into the same standardized API structure.
+- **Testing Suite (BuggyController)**: Integrated a dedicated testing controller to simulate and verify the system's reaction to various HTTP status codes (400, 401, 404, 500).
+
 ## 🛣️ Implemented API Endpoints
 
 | Resource     | Method | Endpoint               | Description                                   |
