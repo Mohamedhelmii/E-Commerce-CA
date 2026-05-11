@@ -14,7 +14,11 @@ namespace E_Commerce.Core.Specification.ProductSpec
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
         }
-        public ProductsWithCategoriesAndBrandsSpec(string? sort = null)
+        public ProductsWithCategoriesAndBrandsSpec(string? sort = null, Guid? BrandIdFilter = null, Guid? CategoryIdFilter = null)
+            // add filtering
+            :base(p => 
+            (!BrandIdFilter.HasValue || p.BrandId == BrandIdFilter)&&
+            (!CategoryIdFilter.HasValue || p.CategoryId == CategoryIdFilter))
         {
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
