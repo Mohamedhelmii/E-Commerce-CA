@@ -14,10 +14,29 @@ namespace E_Commerce.Core.Specification.ProductSpec
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
         }
-        public ProductsWithCategoriesAndBrandsSpec() 
+        public ProductsWithCategoriesAndBrandsSpec(string? sort = null)
         {
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
+
+            //for sorting
+            AddOrderBy(x => x.Name);
+
+            if (!string.IsNullOrEmpty(sort))
+            {
+                switch (sort)
+                {
+                    case "priceAsc": 
+                        AddOrderBy(p => p.Price);
+                        break;
+                    case "priceDesc":
+                        AddOrderByDescending(p => p.Price);
+                        break;
+                    default:
+                        AddOrderBy(p => p.Name);
+                        break;
+                }
+            } 
         }
     }
 }

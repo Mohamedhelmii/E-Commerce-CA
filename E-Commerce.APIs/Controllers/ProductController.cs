@@ -30,11 +30,11 @@ namespace E_Commerce.APIs.Controllers
             return Ok(_Mapper.Map<Product, ProductToRetyrnDTO>(p));
         }
 
-
+        /// <param name="sort">Can be: priceAsc, priceDesc, or default (Name)</param>
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts()
+        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts(string? sort)
         {
-            var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec();
+            var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec(sort);
             var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
             return Ok(_Mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToRetyrnDTO>>(p));
         }
