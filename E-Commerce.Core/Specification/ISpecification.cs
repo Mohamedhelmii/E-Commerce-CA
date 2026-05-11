@@ -10,5 +10,10 @@ namespace E_Commerce.Core.Specification
         Expression<Func<T, bool>> Criteria { get; }
 
         List<Expression<Func<T, object>>> Includes { get; }
+
+
+        // For sorting
+        Expression<Func<T, Object>> OrderBY { get; }
+        Expression<Func<T, object>> OrderBYDescending { get; }
     }
 }

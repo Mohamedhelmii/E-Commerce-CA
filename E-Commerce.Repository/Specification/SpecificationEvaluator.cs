@@ -18,8 +18,17 @@ namespace E_Commerce.Repository.Specification
             {
                 query = query.Where(specification.Criteria);
             }
-            
-            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+            //for sorting
+            if (specification.OrderBY != null)
+            {
+                query = query.OrderBy(specification.OrderBY);
+            }
+            else if(specification.OrderBYDescending != null)
+            {
+                query = query.OrderByDescending(specification.OrderBYDescending);
+            }
+
+                query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
             
             return query;
         }

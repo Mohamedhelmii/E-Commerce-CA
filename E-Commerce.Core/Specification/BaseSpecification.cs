@@ -16,9 +16,16 @@ namespace E_Commerce.Core.Specification
         }
         public Expression<Func<T, bool>> Criteria { get; }
         public List<Expression<Func<T, object>>> Includes { get; } = new List<Expression<Func<T, object>>>();
+
         protected void AddInclude(Expression<Func<T, object>> include)
         {
             Includes.Add(include);
         }
+        // for sorting
+        public Expression<Func<T, object>> OrderBY { get; private set; }
+        public Expression<Func<T, object>> OrderBYDescending { get; private set; }
+        protected void AddOrderBy(Expression<Func<T, object>> orderBy) => OrderBY = orderBy;
+        protected void AddOrderByDescending(Expression<Func<T, object>> orderBy) => OrderBYDescending = orderBy;
+
     }
 }
