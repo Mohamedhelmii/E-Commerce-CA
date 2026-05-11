@@ -8,6 +8,8 @@ using E_Commerce.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace E_Commerce.APIs
@@ -27,7 +29,17 @@ namespace E_Commerce.APIs
             //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
             //}); ;
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+            // configure swagger to support XML documentation and param descriptions
+            builder.Services.AddSwaggerGen(c=>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "E-Commerce API", Version = "v1" });
+
+                // كود قراءة ملف الـ XML
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
             builder.Services.AddDbContext<StoreContext>(
                 option =>
                 {
