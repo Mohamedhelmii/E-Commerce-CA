@@ -30,6 +30,9 @@ namespace E_Commerce.Core.Specification.ProductSpec
             //for sorting
             AddOrderBy(x => x.Name);
 
+            //for paging
+            ApplyPaging(productSpecParams.PageSize * (productSpecParams.PageIndex - 1), productSpecParams.PageSize);
+
             if (!string.IsNullOrEmpty(productSpecParams.Sort))
             {
                 switch (productSpecParams.Sort)
