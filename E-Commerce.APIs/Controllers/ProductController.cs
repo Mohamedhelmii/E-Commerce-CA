@@ -33,10 +33,10 @@ namespace E_Commerce.APIs.Controllers
         /// <param name="sort">Can be: priceAsc, priceDesc, or default (Name)</param>
         // add filtering and search by name
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts
-            (string? sort, Guid? BrandIdFilter, Guid? CategoryIdFilter, string? Search)
+        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts([FromQuery] ProductSpecParams productSpecParams)
+            //(string? sort, Guid? BrandIdFilter, Guid? CategoryIdFilter, string? Search)
         {
-            var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec(sort, BrandIdFilter, CategoryIdFilter, Search);
+            var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec(productSpecParams);//(sort, BrandIdFilter, CategoryIdFilter, Search);
             var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
             return Ok(_Mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToRetyrnDTO>>(p));
         }
