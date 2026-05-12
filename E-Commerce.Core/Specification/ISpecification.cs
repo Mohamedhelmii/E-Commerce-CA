@@ -15,5 +15,10 @@ namespace E_Commerce.Core.Specification
         // For sorting
         Expression<Func<T, Object>> OrderBY { get; }
         Expression<Func<T, object>> OrderBYDescending { get; }
+
+        // For Pagination
+        int Take { get; }
+        int Skip { get; }
+        bool IsPagingEnable { get; }
     }
 }

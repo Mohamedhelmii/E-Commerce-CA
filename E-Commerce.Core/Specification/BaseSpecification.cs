@@ -27,5 +27,18 @@ namespace E_Commerce.Core.Specification
         protected void AddOrderBy(Expression<Func<T, object>> orderBy) => OrderBY = orderBy;
         protected void AddOrderByDescending(Expression<Func<T, object>> orderBy) => OrderBYDescending = orderBy;
 
+        // for Pagination
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPagingEnable { get; private set; }
+        public void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnable = true;
+        }
+
     }
 }
