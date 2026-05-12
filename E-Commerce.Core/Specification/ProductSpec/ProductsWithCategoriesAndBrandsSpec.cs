@@ -14,12 +14,15 @@ namespace E_Commerce.Core.Specification.ProductSpec
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
         }
-        public ProductsWithCategoriesAndBrandsSpec(string? sort = null, Guid? BrandIdFilter = null, Guid? CategoryIdFilter = null, string? Search = null)
+
+        // after using productSpecParams
+        public ProductsWithCategoriesAndBrandsSpec(ProductSpecParams productSpecParams)
+            //(string? sort = null, Guid? BrandIdFilter = null, Guid? CategoryIdFilter = null, string? Search = null)
             // add filtering and search by name
             :base(p => 
-            (!BrandIdFilter.HasValue || p.BrandId == BrandIdFilter)&&
-            (!CategoryIdFilter.HasValue || p.CategoryId == CategoryIdFilter) &&
-            (string.IsNullOrEmpty(Search) || p.Name.ToLower().Contains(Search.ToLower())))
+            (!productSpecParams.BrandIdFilter.HasValue || p.BrandId == productSpecParams.BrandIdFilter)&&
+            (!productSpecParams.CategoryIdFilter.HasValue || p.CategoryId == productSpecParams.CategoryIdFilter) &&
+            (string.IsNullOrEmpty(productSpecParams.Search) || p.Name.ToLower().Contains(productSpecParams.Search)))
         {
             AddInclude(p => p.Brand);
             AddInclude(p => p.Category);
@@ -27,9 +30,9 @@ namespace E_Commerce.Core.Specification.ProductSpec
             //for sorting
             AddOrderBy(x => x.Name);
 
-            if (!string.IsNullOrEmpty(sort))
+            if (!string.IsNullOrEmpty(productSpecParams.Sort))
             {
-                switch (sort)
+                switch (productSpecParams.Sort)
                 {
                     case "priceAsc": 
                         AddOrderBy(p => p.Price);
