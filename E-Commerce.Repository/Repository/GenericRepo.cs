@@ -44,5 +44,10 @@ namespace E_Commerce.Repository.Repository
         {
             return await ApplySpecification(specification).ToListAsync();
         }
+        // add implementaion of count
+        public async Task<int> CountAsync(ISpecification<T> specification)
+        {
+           return await ApplySpecification(specification).CountAsync();
+        }
     }
 }

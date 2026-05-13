@@ -16,5 +16,8 @@ namespace E_Commerce.Core.Services
         //Add Specification Method
         Task<T?> GetEntityWithSpecifcationAsync(ISpecification<T> specification);
         Task<IReadOnlyList<T>> GetAllWithSpecificationAsync(ISpecification<T> specification);
+
+        // add method for count
+        Task<int> CountAsync(ISpecification<T> specification);
     }
 }
