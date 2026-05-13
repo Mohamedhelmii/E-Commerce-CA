@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using E_Commerce.APIs.Helpers;
 using E_Commerce.Core.DTOs;
 using E_Commerce.Core.Entities.ProductAggregate;
 using E_Commerce.Core.Services;
@@ -32,13 +33,19 @@ namespace E_Commerce.APIs.Controllers
 
         /// <param name="sort">Can be: priceAsc, priceDesc, or default (Name)</param>
         // add filtering and search by name
+        // add pagination structure and Paging Helper Response
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToRetyrnDTO>>> GetAllProducts([FromQuery] ProductSpecParams productSpecParams)
+        public async Task<ActionResult<IReadOnlyList<pagination<ProductToRetyrnDTO>>>> GetAllProducts([FromQuery] ProductSpecParams productSpecParams)
             //(string? sort, Guid? BrandIdFilter, Guid? CategoryIdFilter, string? Search)
         {
             var ProductsSpec = new ProductsWithCategoriesAndBrandsSpec(productSpecParams);//(sort, BrandIdFilter, CategoryIdFilter, Search);
+            // to add countSpec
+            var CountSpec = new ProductWithFilterCountSpec(productSpecParams);
+            var Total = await _ProductRepo.CountAsync(CountSpec);
             var p = await _ProductRepo.GetAllWithSpecificationAsync(ProductsSpec);
-            return Ok(_Mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToRetyrnDTO>>(p));
+            var data = _Mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToRetyrnDTO>>(p);
+            return Ok(new pagination<ProductToRetyrnDTO>
+                (productSpecParams.PageIndex, productSpecParams.PageSize, Total, data));
         }
 
         #region After using specification
