@@ -51,16 +51,27 @@ Implemented a robust, centralized error handling system to ensure API stability 
 - **Validation Error Uniformity**: Overrode the default ASP.NET Core behavior to capture and format validation errors (400 Bad Request) into the same standardized API structure.
 - **Testing Suite (BuggyController)**: Integrated a dedicated testing controller to simulate and verify the system's reaction to various HTTP status codes (400, 401, 404, 500).
 
+### 6. 📊 Pagination, Filtering & Search System
+
+To handle large datasets efficiently and provide a professional user experience, we implemented a robust data-querying engine:
+
+- **Generic Pagination Wrapper**: Standardized all paginated API responses using a `Pagination<T>` helper, providing metadata like `pageIndex`, `pageSize`, and the total `count` of items.
+- **Optimized Count Specification**: Created a dedicated `ProductWithFilterCountSpec` to calculate the total number of items matching a search criteria directly in the database, avoiding unnecessary data loading.
+- **Dynamic Filtering & Search**:
+  - **Filtering**: Users can filter products by `BrandId` and `CategoryId` dynamically.
+  - **Full-Text Search**: Implemented a "Search" functionality that filters results based on product names.
+- **Dynamic Sorting**: Integrated flexible sorting options including `Price (Asc/Desc)` and `Alphabetical` ordering through the Specification pattern.
+
 ## 🛣️ Implemented API Endpoints
 
-| Resource     | Method | Endpoint               | Description                                   |
-| ------------ | ------ | ---------------------- | --------------------------------------------- |
-| **Products** | GET    | `/api/products`        | Get all products with Brands and Categories.  |
-| **Products** | GET    | `/api/products/{id}`   | Get specific product details (Included data). |
-| **Brands**   | GET    | `/api/brands`          | List all available product brands.            |
-| **Brands**   | GET    | `/api/brands/{id}`     | Get specific brand details.                   |
-| **Category** | GET    | `/api/categories`      | List all available product categories.        |
-| **Category** | GET    | `/api/categories/{id}` | Get specific category details.                |
+| Resource     | Method | Endpoint               | Description                                                  |
+| ------------ | ------ | ---------------------- | ------------------------------------------------------------ |
+| **Products** | GET    | `/api/products`        | Get all products with **Pagination, Filtering, and Search**. |
+| **Products** | GET    | `/api/products/{id}`   | Get specific product details (Included data).                |
+| **Brands**   | GET    | `/api/brands`          | List all available product brands.                           |
+| **Brands**   | GET    | `/api/brands/{id}`     | Get specific brand details.                                  |
+| **Category** | GET    | `/api/categories`      | List all available product categories.                       |
+| **Category** | GET    | `/api/categories/{id}` | Get specific category details.                               |
 
 ## 🛠️ Tech Stack & Tools
 
@@ -71,16 +82,6 @@ Implemented a robust, centralized error handling system to ensure API stability 
 - **Documentation:** Swagger UI for interactive API testing.
 - **Mapping:** AutoMapper (with Dependency Injection).
 - **Configuration:** Strong-typed IConfiguration for dynamic environment settings.
-
-## ✅ Current Status: Phase 1 Completed
-
-- [x] Solution & Multi-layered Project Setup.
-- [x] Domain Entities & Fluent API Mapping.
-- [x] Generic Repository & Specification Pattern Implementation.
-- [x] Refactored Controllers to use Specification logic.
-- [x] Resolved Object Cycle issues in JSON serialization.
-- [x] AutoMapper integration for DTO transformation.
-- [x] Custom Image URL Resolver for assets.
 
 ---
 
