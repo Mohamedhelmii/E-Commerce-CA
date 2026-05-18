@@ -1,6 +1,8 @@
 ﻿using E_Commerce.APIs.Helpers;
 using E_Commerce.Core.Services;
+using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
 
@@ -10,7 +12,11 @@ namespace E_Commerce.APIs.Extentions
     {
         public static IServiceCollection ApplicationServices(this IServiceCollection services, IConfiguration config)
         {
-
+            services.AddDbContext<StoreContext>(
+                option =>
+                {
+                    option.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                });
             // DI of Generic Without using UOW
             services.AddScoped(typeof(IGenericRepo<>), typeof(GenericRepo<>));
             // Register AutoMapper

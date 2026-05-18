@@ -40,11 +40,7 @@ namespace E_Commerce.APIs
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
-            builder.Services.AddDbContext<StoreContext>(
-                option =>
-                {
-                    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                });
+            
 
             #region move to extension folder
 
