@@ -14,7 +14,7 @@ namespace E_Commerce.Repository.Repository
         {
             _database = redis.GetDatabase();
         }
-        async Task<CustomarBasket?> AddorUpdateBasketAsync(CustomarBasket Basket)
+        public async Task<CustomarBasket?> AddorUpdateBasketAsync(CustomarBasket Basket)
         {
             //sreialize
             var jsonBasket = await _database.StringSetAsync(
@@ -23,16 +23,16 @@ namespace E_Commerce.Repository.Repository
                 TimeSpan.FromDays(30)
                 );
             if(!jsonBasket) return null;
-            //
+
             return await GetBasketAsync(Basket.customarId);
         }
 
-        async Task<bool> DeleteBasketAsync(string basketId)
+        public async Task<bool> DeleteBasketAsync(string basketId)
         {
             return await _database.KeyDeleteAsync(basketId);
         }
 
-        async Task<CustomarBasket?> GetBasketAsync(string basketId)
+        public async Task<CustomarBasket?> GetBasketAsync(string basketId)
         {
             //Deserialize
             var data = await _database.StringGetAsync(basketId);
