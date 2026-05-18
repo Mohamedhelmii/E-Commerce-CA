@@ -55,7 +55,7 @@ namespace E_Commerce.APIs
             //// Register Resolver
             //builder.Services.AddScoped<ProductImageUrlSolver>();
             #endregion
-            builder.Services.ApplicationServices();
+            builder.Services.ApplicationServices(builder.Configuration);
 
             // this configure to standardize validation error response format
             builder.Services.Configure<ApiBehaviorOptions>(options =>
