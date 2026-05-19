@@ -11,10 +11,15 @@ namespace E_Commerce.Repository.Data.Config
         {
             base.Configure(builder);
             builder.Property(oi => oi.Price).HasColumnType("decimal(18,2)");
-            builder.HasOne(oi => oi.Order)
-                .WithMany(o => o.OrderItems) 
-                .HasForeignKey(oi => oi.OrderId)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.OwnsOne(oi => oi.ProductItemOrdered, pio => { pio.WithOwner(); });
+
+
+
+            //the relation wrote at orderConfiguration
+            //builder.HasOne(oi => oi.Order)
+            //    .WithMany(o => o.OrderItems) 
+            //    .HasForeignKey(oi => oi.OrderId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
             /*   
                  If I did that, I'd be linking them to the database,
