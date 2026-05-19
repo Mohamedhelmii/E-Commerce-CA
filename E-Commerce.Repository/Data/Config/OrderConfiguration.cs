@@ -24,6 +24,9 @@ namespace E_Commerce.Repository.Data.Config
                .WithMany(o =>o.Orders)
                .HasForeignKey(o => o.DeliveryMethodId)
                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Property(o => o.Subtotal)
+                .HasColumnType("decimal(18,2)");
         }
     }
 }
