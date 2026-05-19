@@ -12,5 +12,8 @@ namespace E_Commerce.Core.Entities.OrderAggregate
 
         [EnumMember(Value = "PaymentFailed")]
         PaymentFailed,
+
+        [EnumMember(Value = "Shipped")]
+        Shipped
     }
 }
