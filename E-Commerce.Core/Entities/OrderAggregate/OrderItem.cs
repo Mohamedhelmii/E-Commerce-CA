@@ -2,6 +2,13 @@
 {
     public class OrderItem : BaseEntity
     {
+        public OrderItem() { }
+        public OrderItem(ProductItemOrdered productItemOrdered, decimal price, int quantity)
+        {
+            ProductItemOrdered = productItemOrdered;
+            Price = price;
+            Quantity = quantity;
+        }
         /*
              I don't want to have a direct relationship between OrderItem and Product,
              because I want to keep the order history intact even if the product details change or the product is deleted.
@@ -10,12 +17,14 @@
              This way, even if the product is updated or removed from the catalog later,
              the order history will still reflect the correct information about what was ordered.
         */
-        public Guid ProductItemId { get; set; }
-        public string ProductName { get; set; } = string.Empty;
-        public string PictureUrl { get; set; } = string.Empty;
+        //public Guid ProductItemId { get; set; }
+        //public string ProductName { get; set; } = string.Empty;
+        //public string PictureUrl { get; set; } = string.Empty;
+        public ProductItemOrdered ProductItemOrdered { get; set; } = null!;
         public decimal Price { get; set; }
         public int Quantity { get; set; }
-        public Guid OrderId { get; set; }
-        public Order Order { get; set; } = null!;
+        
+        //public Guid OrderId { get; set; }
+        //public Order Order { get; set; } = null!;
     }
 }
