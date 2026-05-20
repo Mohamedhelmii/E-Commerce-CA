@@ -53,7 +53,7 @@
     "Price": 150.00,
     "ImageUrl": "images/products/airmax.jpg",
     "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
-    "CategoryId": "e1a72b93-5c4d-4e2a-8f1b-3647281904bc"
+    "CategoryId": "8b403739-e9a1-4d9b-91d8-fcab8c70efe8"
   },
   {
     "Name": "Nike Tech Fleece Hoodie",
@@ -61,7 +61,7 @@
     "Price": 110.00,
     "ImageUrl": "images/products/techfleece.jpg",
     "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
-    "CategoryId": "8b2c93d1-fa74-41bc-9d62-51839a2bcf46"
+    "CategoryId": "60d3757a-fd1e-4662-bbf6-eefa2fd742d8"
   },
   {
     "Name": "Adidas Ultraboost Light",
@@ -69,7 +69,7 @@
     "Price": 180.00,
     "ImageUrl": "images/products/ultraboost.jpg",
     "BrandId": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
-    "CategoryId": "e1a72b93-5c4d-4e2a-8f1b-3647281904bc"
+    "CategoryId": "8b403739-e9a1-4d9b-91d8-fcab8c70efe8"
   },
   {
     "Name": "Adidas Essentials 3-Stripes Tee",
@@ -77,7 +77,7 @@
     "Price": 30.00,
     "ImageUrl": "images/products/adidas-tee.jpg",
     "BrandId": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
-    "CategoryId": "8b2c93d1-fa74-41bc-9d62-51839a2bcf46"
+    "CategoryId": "60d3757a-fd1e-4662-bbf6-eefa2fd742d8"
   },
   {
     "Name": "Sony WH-1000XM5",
