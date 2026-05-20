@@ -10,5 +10,18 @@
   {
     "Id": "c5d6dab3-8659-4d2c-9660-d802ec01461e",
     "Name": "Accessories"
+  },
+
+  {
+    "Id": "f38e21a4-9467-4e31-bc6e-214736195bb2",
+    "Name": "Electronics"
+  },
+  {
+    "Id": "e1a72b93-5c4d-4e2a-8f1b-3647281904bc",
+    "Name": "Footwear"
+  },
+  {
+    "Id": "8b2c93d1-fa74-41bc-9d62-51839a2bcf46",
+    "Name": "Apparel"
   }
 ]

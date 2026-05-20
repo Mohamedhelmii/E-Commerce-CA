@@ -14,5 +14,101 @@
     "ImageUrl": "images/products/tshirt-1.png",
     "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
     "CategoryId": "60d3757a-fd1e-4662-bbf6-eefa2fd742d8"
+  },
+  {
+    "Name": "iPhone 15 Pro Max",
+    "Description": "Titanium design, A17 Pro chip, advanced camera system.",
+    "Price": 1200.00,
+    "ImageUrl": "images/products/iphone15.jpg",
+    "BrandId": "71b29c43-fa81-42cb-9781-64dca31852b9",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "MacBook Pro 16 Inch",
+    "Description": "M3 Max chip, 32GB RAM, 1TB SSD for ultimate workflow.",
+    "Price": 2500.00,
+    "ImageUrl": "images/products/macbook.jpg",
+    "BrandId": "71b29c43-fa81-42cb-9781-64dca31852b9",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "Galaxy S24 Ultra",
+    "Description": "Galaxy AI, 200MP camera, built-in S Pen.",
+    "Price": 1100.00,
+    "ImageUrl": "images/products/s24.jpg",
+    "BrandId": "b8e5c1d7-fa39-4d2c-8b1e-765432109876",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "Samsung 34 Inch Odyssey Monitor",
+    "Description": "Ultra-wide curved gaming monitor with 165Hz refresh rate.",
+    "Price": 450.00,
+    "ImageUrl": "images/products/monitor.jpg",
+    "BrandId": "b8e5c1d7-fa39-4d2c-8b1e-765432109876",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "Nike Air Max 270",
+    "Description": "Super comfortable running shoes with breathable mesh.",
+    "Price": 150.00,
+    "ImageUrl": "images/products/airmax.jpg",
+    "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
+    "CategoryId": "e1a72b93-5c4d-4e2a-8f1b-3647281904bc"
+  },
+  {
+    "Name": "Nike Tech Fleece Hoodie",
+    "Description": "Premium lightweight fleece fabric, warm without the bulk.",
+    "Price": 110.00,
+    "ImageUrl": "images/products/techfleece.jpg",
+    "BrandId": "03af1661-6a5d-4be3-b911-3ba93bde02c4",
+    "CategoryId": "8b2c93d1-fa74-41bc-9d62-51839a2bcf46"
+  },
+  {
+    "Name": "Adidas Ultraboost Light",
+    "Description": "Epic energy return with the lightest boost technology ever.",
+    "Price": 180.00,
+    "ImageUrl": "images/products/ultraboost.jpg",
+    "BrandId": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
+    "CategoryId": "e1a72b93-5c4d-4e2a-8f1b-3647281904bc"
+  },
+  {
+    "Name": "Adidas Essentials 3-Stripes Tee",
+    "Description": "Classic cotton t-shirt with the iconic three stripes.",
+    "Price": 30.00,
+    "ImageUrl": "images/products/adidas-tee.jpg",
+    "BrandId": "94201e61-902f-4b41-a7b2-db75cda2cc6a",
+    "CategoryId": "8b2c93d1-fa74-41bc-9d62-51839a2bcf46"
+  },
+  {
+    "Name": "Sony WH-1000XM5",
+    "Description": "Industry-leading noise-canceling wireless headphones.",
+    "Price": 350.00,
+    "ImageUrl": "images/products/sony-headphones.jpg",
+    "BrandId": "c9a8b7c6-d5e4-3f2g-1h0i-9j8k7l6m5n4o",
+    "CategoryId": "c5d6dab3-8659-4d2c-9660-d802ec01461e"
+  },
+  {
+    "Name": "Sony PlayStation 5 Slim",
+    "Description": "Next-gen gaming console with 1TB SSD and ultra-high speed.",
+    "Price": 499.00,
+    "ImageUrl": "images/products/ps5.jpg",
+    "BrandId": "c9a8b7c6-d5e4-3f2g-1h0i-9j8k7l6m5n4o",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "Dell XPS 13 Laptop",
+    "Description": "Stunning infinity display, Intel Core i7, sleek aluminum build.",
+    "Price": 1300.00,
+    "ImageUrl": "images/products/xps13.jpg",
+    "BrandId": "de305d54-75b4-431b-adb2-eb6b9e546014",
+    "CategoryId": "f38e21a4-9467-4e31-bc6e-214736195bb2"
+  },
+  {
+    "Name": "Apple Watch Ultra 2",
+    "Description": "Rugged titanium case, precision dual-frequency GPS.",
+    "Price": 799.00,
+    "ImageUrl": "images/products/apple-watch.jpg",
+    "BrandId": "71b29c43-fa81-42cb-9781-64dca31852b9",
+    "CategoryId": "c5d6dab3-8659-4d2c-9660-d802ec01461e"
   }
 ]
