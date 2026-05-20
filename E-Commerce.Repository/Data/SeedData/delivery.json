@@ -16,5 +16,17 @@
     "DeliveryTime": "1-2 Weeks",
     "Description": "Free shipping for orders over $100",
     "Price": 0
+  },
+  {
+    "ShortName": "FedEx Ground",
+    "DeliveryTime": "3-5 Days",
+    "Description": "Slower but cheaper delivery",
+    "Price": 5.00
+  },
+  {
+    "ShortName": "DHL Economy",
+    "DeliveryTime": "2-3 Days",
+    "Description": "Reliable international delivery",
+    "Price": 7.50
   }
 ]
