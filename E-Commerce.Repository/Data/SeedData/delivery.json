@@ -18,13 +18,13 @@
     "Price": 0
   },
   {
-    "ShortName": "FedEx Ground",
+    "Name": "FedEx Ground",
     "DeliveryTime": "3-5 Days",
     "Description": "Slower but cheaper delivery",
     "Price": 5.00
   },
   {
-    "ShortName": "DHL Economy",
+    "Name": "DHL Economy",
     "DeliveryTime": "2-3 Days",
     "Description": "Reliable international delivery",
     "Price": 7.50
