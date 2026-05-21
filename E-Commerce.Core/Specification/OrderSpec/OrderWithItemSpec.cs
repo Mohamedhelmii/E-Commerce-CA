@@ -12,14 +12,23 @@ namespace E_Commerce.Core.Specification.OrderSpec
         //to return history of orders
         public OrderWithItemSpec(string buyerEmail) : base(o => o.BuyerEmail == buyerEmail) 
         {
-            AddInclude(o => o.OrderItems);
-            AddInclude(o => o.DeliveryMethod);
+            //AddInclude(o => o.OrderItems);
+            //AddInclude(o => o.DeliveryMethod);
+            AddIncludes();
             AddOrderByDescending(o => o.OrderDate);
         }
 
         //to return details of specific order
         public OrderWithItemSpec(Guid orderId, string buyerEmail)
             : base(o => o.Id == orderId && o.BuyerEmail == buyerEmail)
+        {
+            //AddInclude(o => o.OrderItems);
+            //AddInclude(o => o.DeliveryMethod);
+            AddIncludes();
+        }
+
+        //to Apply DRY
+        public void AddIncludes()
         {
             AddInclude(o => o.OrderItems);
             AddInclude(o => o.DeliveryMethod);
