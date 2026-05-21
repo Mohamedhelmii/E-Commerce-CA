@@ -16,8 +16,4 @@
     <None Remove="Services\ProductSpec\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Specification\OrderSpec\" />
-  </ItemGroup>
-
 </Project>
