@@ -1,5 +1,5 @@
 ﻿using E_Commerce.Core.Entities;
-using E_Commerce.Core.Services;
+using E_Commerce.Core.Interfaces;
 using E_Commerce.Core.Specification;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Specification;

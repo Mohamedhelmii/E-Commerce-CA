@@ -1,5 +1,5 @@
 ﻿using E_Commerce.Core.Entities.Basket;
-using E_Commerce.Core.Services;
+using E_Commerce.Core.Interfaces;
 using StackExchange.Redis;
 using System;
 using System.Text.Json;

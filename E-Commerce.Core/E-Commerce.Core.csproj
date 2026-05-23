@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Services\OrderSpec\**" />
-    <Compile Remove="Services\ProductSpec\**" />
-    <EmbeddedResource Remove="Services\OrderSpec\**" />
-    <EmbeddedResource Remove="Services\ProductSpec\**" />
-    <None Remove="Services\OrderSpec\**" />
-    <None Remove="Services\ProductSpec\**" />
+    <Compile Remove="Interfaces\OrderSpec\**" />
+    <Compile Remove="Interfaces\ProductSpec\**" />
+    <EmbeddedResource Remove="Interfaces\OrderSpec\**" />
+    <EmbeddedResource Remove="Interfaces\ProductSpec\**" />
+    <None Remove="Interfaces\OrderSpec\**" />
+    <None Remove="Interfaces\ProductSpec\**" />
   </ItemGroup>
 
 </Project>

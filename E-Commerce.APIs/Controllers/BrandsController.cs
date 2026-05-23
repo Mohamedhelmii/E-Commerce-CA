@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using E_Commerce.Core.DTOs;
 using E_Commerce.Core.Entities.ProductAggregate;
-using E_Commerce.Core.Services;
+using E_Commerce.Core.Interfaces;
 using E_Commerce.Core.Specification.ProductSpec;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -2,7 +2,7 @@
 using E_Commerce.APIs.Extentions;
 using E_Commerce.APIs.Helpers;
 using E_Commerce.APIs.Middleware;
-using E_Commerce.Core.Services;
+using E_Commerce.Core.Interfaces;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
