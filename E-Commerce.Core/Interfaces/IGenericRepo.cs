@@ -19,5 +19,7 @@ namespace E_Commerce.Core.Interfaces
 
         // add method for count
         Task<int> CountAsync(ISpecification<T> specification);
+        //add
+        void Add(T entity);
     }
 }

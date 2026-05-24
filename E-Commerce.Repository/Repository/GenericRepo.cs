@@ -49,5 +49,10 @@ namespace E_Commerce.Repository.Repository
         {
            return await ApplySpecification(specification).CountAsync();
         }
+        //add
+        public void Add(T entity)
+        {
+            dbSet.Add(entity);
+        }
     }
 }
