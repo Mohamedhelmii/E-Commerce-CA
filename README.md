@@ -62,6 +62,19 @@ To handle large datasets efficiently and provide a professional user experience,
   - **Full-Text Search**: Implemented a "Search" functionality that filters results based on product names.
 - **Dynamic Sorting**: Integrated flexible sorting options including `Price (Asc/Desc)` and `Alphabetical` ordering through the Specification pattern.
 
+### 8.🛒 Shopping Basket (Redis Cache)
+
+- Implemented a fully functional shopping cart using **Redis In-Memory Cache** for ultra-fast performance.
+- Deployed and managed the Redis server inside a **Docker Container** to ensure a consistent and isolated development environment.
+- Managed basket operations (Get, Update, Delete) efficiently to reduce database overhead during user browsing.
+
+### 9.📦 Order Aggregate & Checkout System (Clean Architecture)
+
+- Built a robust **Order Management System** using Domain-Driven Design (DDD) concepts (Entities, Value Objects, and Aggregates).
+- Implemented the **Repository & Unit of Work Patterns** to handle database transactions safely during checkout.
+- Automated data mapping using **AutoMapper** to shape complex domain entities into clean, well-formatted `OrderToReturnDTO` responses, preventing any Object Lifecycle loops.
+- Integrated dynamic shipping price calculation based on the selected `DeliveryMethod`.
+
 ## 🛣️ Implemented API Endpoints
 
 | Resource     | Method | Endpoint               | Description                                                  |
