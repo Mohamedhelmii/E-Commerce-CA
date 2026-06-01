@@ -2,6 +2,7 @@
 using E_Commerce.Core.Interfaces;
 using E_Commerce.Repository.Data;
 using E_Commerce.Repository.Repository;
+using E_Commerce.Service.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
@@ -30,6 +31,8 @@ namespace E_Commerce.APIs.Extentions
                 return ConnectionMultiplexer.Connect(configuration);
             });
             services.AddScoped<IBasketRepo, BasketRepo>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IOrderServices, OrderServices>();
             return services;
         }
     }
