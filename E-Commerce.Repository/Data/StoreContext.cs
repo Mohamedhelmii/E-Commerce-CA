@@ -1,4 +1,5 @@
-﻿using E_Commerce.Core.Entities.OrderAggregate;
+﻿using E_Commerce.Core.Entities;
+using E_Commerce.Core.Entities.OrderAggregate;
 using E_Commerce.Core.Entities.ProductAggregate;
 using E_Commerce.Repository.Data.Config;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace E_Commerce.Repository.Data
 {
     public class StoreContext : DbContext
-    {
+    { 
         public StoreContext(DbContextOptions<StoreContext> options): base(options) { }  
 
         public DbSet<Product> Products { get; set; }
@@ -21,8 +22,10 @@ namespace E_Commerce.Repository.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        public DbSet<UserStoreTemporary> UserStoreTemporary { get; set; }
+        public DbSet<ResetPasswordTemp> ResetPasswordTemps { get; set; }
 
-        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
